@@ -7,14 +7,17 @@ import Navigation from "../Navigation/Navigation";
 import { CurrentUserContext } from "../../contexts/CurrentUser";
 import { IsLoggedInContext } from "../../contexts/IsLoggedIn";
 
-function Header({}) {
+function Header({ handleRegClick, handleLoginClick }) {
   const currentUser = React.useContext(CurrentUserContext);
   const isLoggedIn = React.useContext(IsLoggedInContext);
 
   return (
     <header className="header">
       <h1>Study Helper</h1>
-      <Navigation />
+      <Navigation
+        handleRegClick={handleRegClick}
+        handleLoginClick={handleLoginClick}
+      />
     </header>
   );
 }

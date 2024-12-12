@@ -1,8 +1,8 @@
-function Navigation({}) {
+function Navigation({ handleRegClick, handleLoginClick }) {
   return (
     <div className="navigation">
-      <button>Sign up</button>
-      <button>or Sign in</button>
+      <button onClick={handleRegClick}>Sign up</button>
+      <button onClick={handleLoginClick}>or Sign in</button>
     </div>
   );
 }

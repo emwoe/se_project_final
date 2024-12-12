@@ -1,6 +1,4 @@
 .footer {
-  background-color: #f3f3f3;
-  font-family: "Cabinet Grotesk";
   max-width: 1360px;
   font-size: 16x;
   line-height: 20px;
@@ -10,8 +8,14 @@
   display: flex;
   justify-content: space-between;
 }
-
+.footer__right {
+  text-align: left;
+}
 .footer__author {
+  margin: 0;
+}
+
+.footer__image-credit {
   margin: 0;
 }
 
