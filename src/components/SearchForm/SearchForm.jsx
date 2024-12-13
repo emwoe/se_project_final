@@ -1,33 +1,53 @@
 import React from "react";
+import ButtonLink from "../ButtonLink/ButtonLink";
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 
 import "./SearchForm.css";
 
-function SearchForm() {
-  const { values, errors, isValid, handleChange } = useFormAndValidation();
+function SearchForm({ getTopicResponse }) {
+  const { values, resetForm, errors, isValid, handleChange } =
+    useFormAndValidation();
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    if (!isValid) {
+      return;
+    }
+    getTopicResponse({ values }, resetForm);
+  };
 
   return (
-    <form className="search-form">
+    <form className="search-form" onSubmit={handleSubmit}>
       <h3 className="search-form__title">
         What do you want to learn about today?
       </h3>
       <p className="search-form__instructions">
         Please enter a search term. We recommend a historical event, scientific
-        process, or theoretical concept.{" "}
+        process, or theoretical concept.
       </p>
       <input
         className="search-form__input"
         type="text"
-        default="Your search here"
+        placeholder=""
+        name="userTopic"
+        value={values.userTopic || ""}
+        minLength="4"
+        maxLength="100"
+        onChange={handleChange}
       ></input>
 
       <button
         type="submit"
-        className={`modal__submit-btn ${!isValid ? "modal__btn_inactive" : ""}`}
+        className={`search-form__submit-btn ${
+          !isValid ? "search-form__btn_inactive" : ""
+        }`}
         disabled={!isValid}
       >
-        Let's go!
+        Figure out what I need to know...
       </button>
+      <ButtonLink to="/study-page" className="search-form__link">
+        and let's go!
+      </ButtonLink>
     </form>
   );
 }

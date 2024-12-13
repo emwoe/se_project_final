@@ -5,13 +5,16 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
-import "./App.css";
-import * as token from "../../utils/token.js";
-import { CurrentUserContext } from "../../contexts/CurrentUser.js";
-import { IsLoggedInContext } from "../../contexts/IsLoggedIn.js";
 import StudyPage from "../StudyPage/StudyPage.jsx";
 import SavedSearchSection from "../SavedSearchSection/SavedSearchSection.jsx";
 import SearchPage from "../SearchPage/SearchPage.jsx";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
+import "./App.css";
+import * as auth from "../../utils/auth.js";
+import * as token from "../../utils/token.js";
+import { getEduContent } from "../../utils/openai.js";
+import { CurrentUserContext } from "../../contexts/CurrentUser.js";
+import { IsLoggedInContext } from "../../contexts/IsLoggedIn.js";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -32,12 +35,14 @@ function App() {
       .finally(() => setIsLoading(false));
   }
 
-  const handleRegistration = ({ email, password, name }) => {
+  //  The functions below need to be changed for the correct fields
+
+  const handleRegistration = ({ username, email, password }) => {
     const makeRequest = () => {
-      return auth.register({ email, password, name }).then((data) => {
+      return auth.register({ username, email, password }).then((data) => {
         setIsLoggedIn(true);
         setCurrentUser({
-          name: data.name,
+          username: data.username,
           _id: data._id,
           email: data.email,
         });
@@ -67,6 +72,19 @@ function App() {
 
   const handleLoginClick = () => {
     setActiveModal("login");
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    token.clearToken();
+  };
+
+  const handleTopicCardClick = (card) => {
+    setCurrentTopic(card);
+  };
+
+  const getTopicResponse = ({ values }, resetForm) => {
+    getEduContent(values.userTopic).then((data) => setTopic(data));
   };
 
   useEffect(() => {
@@ -102,12 +120,32 @@ function App() {
             />
             <Routes>
               <Route path="/" element={<Main />} />
-              <Route path="/search-page" element={<SearchPage />} />
+              <Route
+                path="/search-page"
+                element={
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
+                    <SearchPage getTopicResponse={getTopicResponse} />
+                  </ProtectedRoute>
+                }
+              />
               <Route
                 path="/study-page"
-                element={<StudyPage currentTopic={currentTopic} />}
+                element={
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
+                    <StudyPage currentTopic={currentTopic} />
+                  </ProtectedRoute>
+                }
               />
-              <Route path="/topic-library" element={<SavedSearchSection />} />
+              <Route
+                path="/topic-library"
+                element={
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
+                    <SavedSearchSection
+                      handleTopicCardClick={handleTopicCardClick}
+                    />
+                  </ProtectedRoute>
+                }
+              />
             </Routes>
             <Footer />
           </div>

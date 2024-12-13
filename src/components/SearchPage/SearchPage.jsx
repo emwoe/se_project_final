@@ -4,11 +4,11 @@ import SearchForm from "../SearchForm/SearchForm";
 
 import "./SearchPage.css";
 
-function SearchPage({}) {
+function SearchPage({ getTopicResponse }) {
   return (
     <main className="searchpage">
       <img className="searchpage__img" src={sideimage} />
-      <SearchForm />
+      <SearchForm getTopicResponse={getTopicResponse} />
     </main>
   );
 }

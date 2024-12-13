@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { IsLoggedInContext } from "../../contexts/IsLoggedIn";
 import "./Navigation.css";
 
@@ -20,8 +21,10 @@ function Navigation({ handleRegClick, handleLoginClick }) {
           isLoggedIn === false && "navigation_loggedin-invsb"
         }`}
       >
-        <button>Study Page</button>
-        <button>Past Searches</button>
+        <Link to="/">Home</Link>
+        <Link to="/search-page">New Search</Link>
+        <Link to="/study-page">Study Page</Link>
+        <Link to="/topic-library">Past Searches</Link>
       </div>
     </div>
   );
