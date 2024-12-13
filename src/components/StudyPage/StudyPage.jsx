@@ -1,5 +1,5 @@
 import React from "react";
-import imageblock from "../../assets/studyhelperbackgroundimg.jpg";
+import imagetall from "../../assets/studyhelpersidebarimg.jpg";
 
 import "./StudyPage.css";
 
@@ -19,7 +19,7 @@ function StudyPage({}) {
         </p>
       </div>
       <div className="studypage__img-bar">
-        <img className="main__img-block" src={imageblock}></img>
+        <img className="studypage__img" src={imagetall}></img>
       </div>
     </main>
   );

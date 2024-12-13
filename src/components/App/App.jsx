@@ -10,6 +10,7 @@ import * as token from "../../utils/token.js";
 import { CurrentUserContext } from "../../contexts/CurrentUser.js";
 import { IsLoggedInContext } from "../../contexts/IsLoggedIn.js";
 import StudyPage from "../StudyPage/StudyPage.jsx";
+import SavedSearchSection from "../SavedSearchSection/SavedSearchSection.jsx";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -100,6 +101,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Main />} />
               <Route path="/study-page" element={<StudyPage />} />
+              <Route path="/topic-library" element={<SavedSearchSection />} />
             </Routes>
             <Footer />
           </div>

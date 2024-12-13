@@ -37,9 +37,21 @@ function RegisterModal({
       onSubmit={handleSubmit}
       isValid={isValid}
     >
-      <label className="modal__label" htmlFor="email">
-        Email*
-      </label>
+      <input
+        type="text"
+        name="username"
+        className="modal__input"
+        id="name"
+        placeholder="Username"
+        onChange={handleChange}
+        value={values.username || ""}
+        required
+        minLength="2"
+        maxLength="40"
+      ></input>
+      {errors.name && (
+        <span className="modal__input-error_active">{errors.username}</span>
+      )}
       <input
         type="text"
         name="email"
@@ -53,9 +65,6 @@ function RegisterModal({
       {errors.email && (
         <span className="modal__input-error_active">{errors.email}</span>
       )}
-      <label className="modal__label" htmlFor="password">
-        Password
-      </label>
       <input
         type="password"
         name="password"
@@ -71,42 +80,22 @@ function RegisterModal({
       {errors.password && (
         <span className="modal__input-error_active">{errors.password}</span>
       )}
-      <label className="modal__label" htmlFor="name">
-        Name*
-      </label>
       <input
-        type="text"
-        name="name"
+        type="password"
+        name="passwordcheck"
         className="modal__input"
-        id="name"
-        placeholder="Name"
+        id="passwordcheck"
+        placeholder="Password again"
         onChange={handleChange}
-        value={values.name || ""}
+        value={values.passwordcheck || ""}
         required
-        minLength="2"
+        minLength="8"
         maxLength="40"
       ></input>
-      {errors.name && (
-        <span className="modal__input-error_active">{errors.name}</span>
-      )}
-
-      <label className="modal__label" htmlFor="avatarUrl">
-        Avatar URL*
-      </label>
-
-      <input
-        type="url"
-        className="modal__input"
-        id="avatarUrl"
-        placeholder="Avatar URL"
-        name="url"
-        pattern="https?://.+"
-        onChange={handleChange}
-        value={values.url || ""}
-        required
-      ></input>
-      {errors.url && (
-        <span className="modal__input-error_active">{errors.url}</span>
+      {errors.password && (
+        <span className="modal__input-error_active">
+          {errors.passwordcheck}
+        </span>
       )}
     </ModalWithForm>
   );

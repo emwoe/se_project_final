@@ -30,9 +30,6 @@ function LoginModal({
       onSubmit={handleSubmit}
       isValid={isValid}
     >
-      <label className="modal__label" htmlFor="loginemail">
-        Email
-      </label>
       <input
         type="text"
         name="loginemail"
@@ -46,9 +43,6 @@ function LoginModal({
       {errors.loginemail && (
         <span className="modal__input-error_active">{errors.loginemail}</span>
       )}
-      <label className="modal__label" htmlFor="loginpassword">
-        Password
-      </label>
       <input
         type="password"
         name="loginpassword"

@@ -1,0 +1,10 @@
+.studypage {
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.studypage__img {
+  max-height: 800px;
+}
