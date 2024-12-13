@@ -3,15 +3,15 @@ import SavedSearchCard from "../SavedSearchCard/SavedSearchCard";
 
 import "./SavedSearchSection.css";
 
-function SavedSearchSection({}) {
+function SavedSearchSection({ handleTopicCardClick }) {
   return (
     <main className="search-section">
       <div className="search-section__cards">
-        <SavedSearchCard />
-        <SavedSearchCard />
-        <SavedSearchCard />
-        <SavedSearchCard />
-        <SavedSearchCard />
+        <SavedSearchCard onClick={handleTopicCardClick} />
+        <SavedSearchCard onClick={handleTopicCardClick} />
+        <SavedSearchCard onClick={handleTopicCardClick} />
+        <SavedSearchCard onClick={handleTopicCardClick} />
+        <SavedSearchCard onClick={handleTopicCardClick} />
       </div>
     </main>
   );
