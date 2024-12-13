@@ -37,11 +37,14 @@ function RegisterModal({
       onSubmit={handleSubmit}
       isValid={isValid}
     >
+      {errors.username && (
+        <span className="modal__input-error_active">{errors.username}</span>
+      )}
       <input
         type="text"
         name="username"
         className="modal__input"
-        id="name"
+        id="username"
         placeholder="Username"
         onChange={handleChange}
         value={values.username || ""}
@@ -49,11 +52,11 @@ function RegisterModal({
         minLength="2"
         maxLength="40"
       ></input>
-      {errors.name && (
-        <span className="modal__input-error_active">{errors.username}</span>
+      {errors.email && (
+        <span className="modal__input-error_active">{errors.email}</span>
       )}
       <input
-        type="text"
+        type="email"
         name="email"
         className="modal__input"
         id="email"
@@ -62,8 +65,8 @@ function RegisterModal({
         value={values.email || ""}
         required
       ></input>
-      {errors.email && (
-        <span className="modal__input-error_active">{errors.email}</span>
+      {errors.password && (
+        <span className="modal__input-error_active">{errors.password}</span>
       )}
       <input
         type="password"
@@ -77,8 +80,10 @@ function RegisterModal({
         minLength="8"
         maxLength="40"
       ></input>
-      {errors.password && (
-        <span className="modal__input-error_active">{errors.password}</span>
+      {errors.passwordcheck && (
+        <span className="modal__input-error_active">
+          {errors.passwordcheck}
+        </span>
       )}
       <input
         type="password"
@@ -92,11 +97,6 @@ function RegisterModal({
         minLength="8"
         maxLength="40"
       ></input>
-      {errors.password && (
-        <span className="modal__input-error_active">
-          {errors.passwordcheck}
-        </span>
-      )}
     </ModalWithForm>
   );
 }

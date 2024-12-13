@@ -11,12 +11,14 @@ import { CurrentUserContext } from "../../contexts/CurrentUser.js";
 import { IsLoggedInContext } from "../../contexts/IsLoggedIn.js";
 import StudyPage from "../StudyPage/StudyPage.jsx";
 import SavedSearchSection from "../SavedSearchSection/SavedSearchSection.jsx";
+import SearchPage from "../SearchPage/SearchPage.jsx";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [activeModal, setActiveModal] = useState("");
   const [currentUser, setCurrentUser] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [currentTopic, setCurrentTopic] = useState("photosynthesis");
 
   const handleModalClose = () => {
     setActiveModal("");
@@ -100,7 +102,11 @@ function App() {
             />
             <Routes>
               <Route path="/" element={<Main />} />
-              <Route path="/study-page" element={<StudyPage />} />
+              <Route path="/search-page" element={<SearchPage />} />
+              <Route
+                path="/study-page"
+                element={<StudyPage currentTopic={currentTopic} />}
+              />
               <Route path="/topic-library" element={<SavedSearchSection />} />
             </Routes>
             <Footer />

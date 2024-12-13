@@ -30,8 +30,11 @@ function LoginModal({
       onSubmit={handleSubmit}
       isValid={isValid}
     >
+      {errors.loginemail && (
+        <span className="modal__input-error_active">{errors.loginemail}</span>
+      )}
       <input
-        type="text"
+        type="email"
         name="loginemail"
         className="modal__input"
         id="loginemail"
@@ -40,8 +43,10 @@ function LoginModal({
         value={values.loginemail || ""}
         required
       ></input>
-      {errors.loginemail && (
-        <span className="modal__input-error_active">{errors.loginemail}</span>
+      {errors.loginpassword && (
+        <span className="modal__input-error_active">
+          {errors.loginpassword}
+        </span>
       )}
       <input
         type="password"
@@ -55,11 +60,6 @@ function LoginModal({
         minLength="8"
         maxLength="40"
       ></input>
-      {errors.loginpassword && (
-        <span className="modal__input-error_active">
-          {errors.loginpassword}
-        </span>
-      )}
     </ModalWithForm>
   );
 }
