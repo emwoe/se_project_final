@@ -13,18 +13,31 @@ function Navigation({ handleRegClick, handleLoginClick }) {
           isLoggedIn === true && "navigation_loggedout-invsb"
         }`}
       >
-        <button onClick={handleRegClick}>Sign up</button>
-        <button onClick={handleLoginClick}>or Sign in</button>
+        <button className="navigation__btn" onClick={handleRegClick}>
+          Sign up
+        </button>
+        <button className="navigation__signin-btn" onClick={handleLoginClick}>
+          or Sign in
+        </button>
       </div>
       <div
         className={`navigation_loggedin ${
           isLoggedIn === false && "navigation_loggedin-invsb"
         }`}
       >
-        <Link to="/">Home</Link>
-        <Link to="/search-page">New Search</Link>
-        <Link to="/study-page">Study Page</Link>
-        <Link to="/topic-library">Past Searches</Link>
+        <Link className="navigation__link" to="/">
+          Home
+        </Link>
+        <Link className="navigation__link" to="/search-page">
+          New Search
+        </Link>
+        <Link className="navigation__link" to="/study-page">
+          Study Page
+        </Link>
+        <Link className="navigation__link" to="/topic-library">
+          Past Searches
+        </Link>
+        <button className="navigation__btn">Log out</button>
       </div>
     </div>
   );

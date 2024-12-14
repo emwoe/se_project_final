@@ -13,7 +13,7 @@ function Header({ handleRegClick, handleLoginClick }) {
 
   return (
     <header className="header">
-      <h1>Study Helper</h1>
+      <h1 className="header__logo">STUDY HELPER</h1>
       <Navigation
         handleRegClick={handleRegClick}
         handleLoginClick={handleLoginClick}

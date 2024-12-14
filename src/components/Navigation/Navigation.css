@@ -1,7 +1,43 @@
+.navigation {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  display: flex;
+  align-items: end;
+}
+
 .navigation_loggedout-invsb {
   display: none;
 }
 
 .navigation_loggedin-invsb {
   display: none;
+}
+
+.navigation__link {
+  color: navy;
+  text-decoration: none;
+  margin: 0 8px 0 8px;
+}
+
+.navigation__btn {
+  background-color: #2f71e5;
+  color: #ffffff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 130px;
+  height: 60px;
+  border-radius: 100px;
+  border: none;
+  padding: 0;
+}
+
+.navigation__btn:hover {
+  background-color: navy;
+}
+
+.navigation__signin-btn {
+  transition-duration: 0s;
+}
+
+.navigation__signin-btn:hover {
+  border: none;
 }
