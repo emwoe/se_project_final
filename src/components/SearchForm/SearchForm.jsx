@@ -45,7 +45,7 @@ function SearchForm({ getTopicResponse }) {
       >
         Figure out what I need to know...
       </button>
-      <ButtonLink to="/study-page" className="search-form__link">
+      <ButtonLink className="search-form__btnlink" to="/study-page" className="search-form__link">
         and let's go!
       </ButtonLink>
     </form>

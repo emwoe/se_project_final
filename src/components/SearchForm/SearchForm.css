@@ -1,0 +1,37 @@
+.search-form {
+  max-width: 80%;
+  border: solid gainsboro 1px;
+  border-radius: 30px;
+  padding: 20px;
+}
+
+.search-form__title {
+  margin: 0;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  font-size: 32px;
+}
+
+.search-form__instructions {
+  font-size: 22px;
+  margin-bottom: 40px;
+}
+
+.search-form__input {
+  margin-bottom: 40px;
+  border: 0.5px solid navy;
+  border-radius: 30px;
+  height: 30px;
+  padding: 5px;
+}
+
+.search-form__submit-btn {
+  color: navy;
+  text-decoration: underline;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.search-form__btnlink {
+  margin-bottom: 40px;
+}

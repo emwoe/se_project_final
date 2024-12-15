@@ -17,7 +17,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUser.js";
 import { IsLoggedInContext } from "../../contexts/IsLoggedIn.js";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [activeModal, setActiveModal] = useState("");
   const [currentUser, setCurrentUser] = useState({});
   const [isLoading, setIsLoading] = useState(false);
