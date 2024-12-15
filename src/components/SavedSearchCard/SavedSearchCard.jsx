@@ -7,8 +7,7 @@ function SavedSearchCard() {
       <div className="card__text">
         <h3 className="card__title">Card Title</h3>
         <p className="card__summary">
-          Card content card content card content card content card content card
-          content
+         Let's try this with some different text that is also too long for a single card. Trying to get the ellipsis to show up.
         </p>
       </div>
     </div>

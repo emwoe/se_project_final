@@ -7,7 +7,8 @@ function StudyPage({ currentTopic }) {
   return (
     <main className="studypage">
       <div className="studypage__info">
-        <h2 className="studypage__topic">{currentTopic}</h2>
+
+        <h2 className="studypage__topic">You searched for: {currentTopic}</h2>
         <h3 className="studypage__overview-heading">Here's an overview:</h3>
         <p className="studypage__overview">
           Here's some sample text about what you'd like to learn about.

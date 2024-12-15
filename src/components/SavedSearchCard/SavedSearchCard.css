@@ -10,10 +10,19 @@
   aspect-ratio: 1/1;
   position: relative;
   overflow: hidden;
+  padding-bottom: 25px;
 }
 
 .card__colorblock {
   width: 100%;
   height: 50%;
   background-color: navy;
+}
+
+.card__title {
+  margin-top: 15px;
+}
+
+.card__summary {
+  padding: 15px;
 }
