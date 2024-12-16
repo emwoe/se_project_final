@@ -1,7 +1,7 @@
 //  This is how openAI calls were set up in previous project
 // Everthing will have to be checked when backend is setup
 
-const urlstring = "http://127.0.0.1:8000/user/summary/";
+const urlstring = "http://localhost:3001/api/query";
 const baseUrl = new URL(urlstring);
 
 export function checkResponse(res) {
@@ -12,13 +12,24 @@ export function checkResponse(res) {
   }
 }
 
-export const getEduContent = (data) => {
-  baseUrl.searchParams.append("original_text", data);
-  return fetch(baseUrl, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  }).then(checkResponse);
-};
+export async function fetchTopicDataFromBackend(userTopic) {
+  try {
+    const response = await fetch("http://localhost:3001/api/query", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ topic: userTopic }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log(data.topicResponse);
+    return data.topicResponse;
+  } catch (error) {
+    console.error("Error fetching data on topic:", error);
+  }
+}

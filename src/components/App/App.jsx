@@ -12,17 +12,19 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 import "./App.css";
 import * as auth from "../../utils/auth.js";
 import * as token from "../../utils/token.js";
-import { getEduContent } from "../../utils/openai.js";
+import { fetchTopicDataFromBackend } from "../../utils/openai.js";
 import { CurrentUserContext } from "../../contexts/CurrentUser.js";
 import { IsLoggedInContext } from "../../contexts/IsLoggedIn.js";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeModal, setActiveModal] = useState("");
   const [currentUser, setCurrentUser] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [currentTopic, setCurrentTopic] = useState("photosynthesis");
+  const [currentTopic, setCurrentTopic] = useState({});
+  const [topicLibrary, setTopicLibrary] = useState([]);
 
+  let libraryArray = [];
   const handleModalClose = () => {
     setActiveModal("");
   };
@@ -38,6 +40,7 @@ function App() {
   //  The functions below need to be changed for the correct fields
 
   const handleRegistration = ({ username, email, password }) => {
+    console.log({username});
     const makeRequest = () => {
       return auth.register({ username, email, password }).then((data) => {
         setIsLoggedIn(true);
@@ -54,7 +57,6 @@ function App() {
   const handleLogin = ({ email, password }) => {
     const makeRequest = () => {
       return auth.login({ email, password }).then((data) => {
-        console.log(data);
         if (data.usertoken) {
           token.setToken(data.usertoken);
           setCurrentUser(data.userdata);
@@ -84,8 +86,14 @@ function App() {
   };
 
   const getTopicResponse = ({ values }, resetForm) => {
-    getEduContent(values.userTopic).then((data) => setTopic(data));
+    console.log(values.userTopic);
+    fetchTopicDataFromBackend(values.userTopic).then((data) => setCurrentTopic({userTopic: values.userTopic, topicResponse: data})).then(console.log(currentTopic));
+    libraryArray.push(currentTopic);
+    console.log(libraryArray);
+    setTopicLibrary(libraryArray);
   };
+
+
 
   useEffect(() => {
     function handleEscClose(evt) {
@@ -117,6 +125,8 @@ function App() {
             <Header
               handleRegClick={handleRegClick}
               handleLoginClick={handleLoginClick}
+              handleSubmit={handleSubmit}
+              handleLogout={handleLogout}
             />
             <Routes>
               <Route path="/" element={<Main />} />
@@ -142,6 +152,7 @@ function App() {
                   <ProtectedRoute isLoggedIn={isLoggedIn}>
                     <SavedSearchSection
                       handleTopicCardClick={handleTopicCardClick}
+                      topicLibrary={topicLibrary}
                     />
                   </ProtectedRoute>
                 }

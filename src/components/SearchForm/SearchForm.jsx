@@ -13,6 +13,7 @@ function SearchForm({ getTopicResponse }) {
     if (!isValid) {
       return;
     }
+    console.log(values);
     getTopicResponse({ values }, resetForm);
   };
 
@@ -28,6 +29,7 @@ function SearchForm({ getTopicResponse }) {
       <input
         className="search-form__input"
         type="text"
+        id="userTopic"
         placeholder=""
         name="userTopic"
         value={values.userTopic || ""}
@@ -45,7 +47,7 @@ function SearchForm({ getTopicResponse }) {
       >
         Figure out what I need to know...
       </button>
-      <ButtonLink className="search-form__btnlink" to="/study-page" className="search-form__link">
+      <ButtonLink className="search-form__btnlink" to="/study-page">
         and let's go!
       </ButtonLink>
     </form>

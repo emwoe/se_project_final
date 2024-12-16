@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { IsLoggedInContext } from "../../contexts/IsLoggedIn";
 import "./Navigation.css";
 
-function Navigation({ handleRegClick, handleLoginClick }) {
+function Navigation({ handleRegClick, handleLoginClick, handleLogout }) {
   const isLoggedIn = React.useContext(IsLoggedInContext);
 
   return (
@@ -37,7 +37,7 @@ function Navigation({ handleRegClick, handleLoginClick }) {
         <Link className="navigation__link" to="/topic-library">
           Past Searches
         </Link>
-        <button className="navigation__btn">Log out</button>
+        <button onClick={handleLogout} className="navigation__btn">Log out</button>
       </div>
     </div>
   );

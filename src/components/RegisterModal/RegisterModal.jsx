@@ -18,9 +18,9 @@ function RegisterModal({
       return;
     }
     handleRegistration({
+      username: values.username,
       email: values.email,
       password: values.password,
-      name: values.name,
     });
     resetForm();
   };
