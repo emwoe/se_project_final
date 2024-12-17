@@ -98,21 +98,30 @@ function App() {
 
   
   const getTopicResponse = (userTopic) => {
+    console.log("getting response for user:");
+    console.log(currentUser);
     console.log(userTopic);
-    fetchTopicDataFromBackend(userTopic).then((data)=>{
-      setCurrentTopic({topic: userTopic, topicResponse: data})
+    fetchTopicDataFromBackend(userTopic).then((data, currentUser)=>{
+      console.log("currentUser from inside");
+      console.log(currentUser);
+      setCurrentTopic({topic: data.topic, topicResponse: data.topicResponse});
+      console.log("queried API and current Topic is now");
+      console.log(currentTopic);
     }).catch(console.error);
   };
 
   const onAddTopic = ({values}, resetForm) => {
     const jwt = token.getToken();
-    getTopicResponse(values.userTopic);
-    
+  
     const makeRequest = () => {
+      console.log("request submitted");
+      getTopicResponse(values.userTopic);
       console.log("current topic is");
       console.log(currentTopic);
-      return postTopic(currentTopic, jwt).then((currentTopic) => {
-        setTopicLibrary((currentItems) => [newTopic.data, ...currentItems]);
+      return postTopic(currentTopic, jwt).then((data) => {
+        console.log("topic posted is");
+        console.log(data.data);
+        setTopicLibrary((currentItems) => [data, ...currentItems]);
         handleModalClose();
         resetForm();
 

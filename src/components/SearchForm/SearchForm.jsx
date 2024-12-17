@@ -13,6 +13,7 @@ function SearchForm({ onAddTopic }) {
     if (!isValid) {
       return;
     }
+    console.log("Values read");
     console.log(values);
     onAddTopic({ values }, resetForm);
   };

@@ -17,7 +17,7 @@ export const postTopic = (data, token) => {
     method: "POST",
     body: JSON.stringify({
       _id: data._id,
-      topic: data.userTopic,
+      topic: data.topic,
       topicResponse: data.topicResponse,
     }),
     headers: {
