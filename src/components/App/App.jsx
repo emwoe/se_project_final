@@ -10,6 +10,10 @@ import SavedSearchSection from "../SavedSearchSection/SavedSearchSection.jsx";
 import SearchPage from "../SearchPage/SearchPage.jsx";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 import "./App.css";
+import {
+  getTopics,
+  postTopic,
+} from "../../utils/api.js";
 import * as auth from "../../utils/auth.js";
 import * as token from "../../utils/token.js";
 import { fetchTopicDataFromBackend } from "../../utils/openai.js";
@@ -44,14 +48,18 @@ function App() {
     const makeRequest = () => {
       return auth.register({ username, email, password }).then((data) => {
         setIsLoggedIn(true);
+        console.log(data);
         setCurrentUser({
           username: data.username,
           _id: data._id,
           email: data.email,
         });
+        console.log("you just registered the currentUser:")
+        console.log(currentUser);
       });
     };
     handleSubmit(makeRequest);
+    auth.getUserInfo(jwt);
   };
 
   const handleLogin = ({ email, password }) => {
@@ -79,20 +87,40 @@ function App() {
   const handleLogout = () => {
     setIsLoggedIn(false);
     token.clearToken();
+    setCurrentUser({});
   };
 
   const handleTopicCardClick = (card) => {
     setCurrentTopic(card);
   };
 
-  const getTopicResponse = ({ values }, resetForm) => {
-    console.log(values.userTopic);
-    fetchTopicDataFromBackend(values.userTopic).then((data) => setCurrentTopic({userTopic: values.userTopic, topicResponse: data})).then(console.log(currentTopic));
-    libraryArray.push(currentTopic);
-    console.log(libraryArray);
-    setTopicLibrary(libraryArray);
+  //  Code below does not add 
+
+  
+  const getTopicResponse = (userTopic) => {
+    console.log(userTopic);
+    fetchTopicDataFromBackend(userTopic).then((data)=>{
+      setCurrentTopic({topic: userTopic, topicResponse: data})
+    }).catch(console.error);
   };
 
+  const onAddTopic = ({values}, resetForm) => {
+    const jwt = token.getToken();
+    getTopicResponse(values.userTopic);
+    
+    const makeRequest = () => {
+      console.log("current topic is");
+      console.log(currentTopic);
+      return postTopic(currentTopic, jwt).then((currentTopic) => {
+        setTopicLibrary((currentItems) => [newTopic.data, ...currentItems]);
+        handleModalClose();
+        resetForm();
+
+      });
+    };
+
+    handleSubmit(makeRequest);
+  };
 
 
   useEffect(() => {
@@ -111,11 +139,43 @@ function App() {
       document.addEventListener("click", handleRemoteClick);
     }
 
+
     return () => {
       document.removeEventListener("keydown", handleEscClose);
       document.removeEventListener("click", handleRemoteClick);
     };
   }, [activeModal]);
+
+  useEffect(() => {
+    console.log("running use effect");
+    const jwt = token.getToken();
+    console.log("jwt is");
+    console.log(jwt);
+
+    if (!jwt) {
+      return;
+    }
+
+    auth
+      .getUserInfo(jwt)
+      .then(({ data }) => {
+        console.log(data);
+        setIsLoggedIn(true);
+        setCurrentUser({
+          username: data.username,
+          _id: data._id,
+          email: data.email,
+        });
+      })
+      .catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    if (currentUser._id) {
+      console.log("Current user has been set:", currentUser);
+    }
+  }, []);
+
 
   return (
     <IsLoggedInContext.Provider value={isLoggedIn}>
@@ -134,7 +194,7 @@ function App() {
                 path="/search-page"
                 element={
                   <ProtectedRoute isLoggedIn={isLoggedIn}>
-                    <SearchPage getTopicResponse={getTopicResponse} />
+                    <SearchPage onAddTopic={onAddTopic}/>
                   </ProtectedRoute>
                 }
               />

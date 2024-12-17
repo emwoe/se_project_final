@@ -4,7 +4,7 @@ import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 
 import "./SearchForm.css";
 
-function SearchForm({ getTopicResponse }) {
+function SearchForm({ onAddTopic }) {
   const { values, resetForm, errors, isValid, handleChange } =
     useFormAndValidation();
 
@@ -14,7 +14,7 @@ function SearchForm({ getTopicResponse }) {
       return;
     }
     console.log(values);
-    getTopicResponse({ values }, resetForm);
+    onAddTopic({ values }, resetForm);
   };
 
   return (
