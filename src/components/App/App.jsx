@@ -97,36 +97,45 @@ function App() {
   //  Code below does not add 
 
   
-  const getTopicResponse = (userTopic) => {
+  const getTopicResponse = async (userTopic) => {
+    try {
     console.log("getting response for user:");
     console.log(currentUser);
     console.log(userTopic);
-    fetchTopicDataFromBackend(userTopic).then((data, currentUser)=>{
-      console.log("currentUser from inside");
-      console.log(currentUser);
-      setCurrentTopic({topic: data.topic, topicResponse: data.topicResponse});
-      console.log("queried API and current Topic is now");
-      console.log(currentTopic);
-    }).catch(console.error);
+    const data = await fetchTopicDataFromBackend(userTopic);
+    data._id = currentUser._id;
+    console.log("data package contains");
+    console.log(data);
+    return data;
+  
+
+    } catch(error) {
+      console.error(error);
+      throw error;
+    }
   };
 
-  const onAddTopic = ({values}, resetForm) => {
+  const onAddTopic = async ({values}, resetForm, currentUser) => {
     const jwt = token.getToken();
   
-    const makeRequest = () => {
-      console.log("request submitted");
-      getTopicResponse(values.userTopic);
+    const makeRequest = async () => {
+      try {
+      const topicData = await getTopicResponse(values.userTopic);
       console.log("current topic is");
-      console.log(currentTopic);
-      return postTopic(currentTopic, jwt).then((data) => {
-        console.log("topic posted is");
-        console.log(data.data);
-        setTopicLibrary((currentItems) => [data, ...currentItems]);
-        handleModalClose();
-        resetForm();
-
-      });
-    };
+      console.log(topicData);
+      const data = await postTopic(topicData, jwt);
+      console.log("topic posted is");
+      console.log(data.data);
+      setCurrentTopic(data.data);
+      setTopicLibrary((currentItems) => [data.data, ...currentItems]);
+      console.log(topicLibrary);
+      handleModalClose();
+      resetForm();
+     
+    } catch (error) {
+      console.error("Error while adding topic:", error);
+    }
+  };
 
     handleSubmit(makeRequest);
   };
@@ -203,7 +212,7 @@ function App() {
                 path="/search-page"
                 element={
                   <ProtectedRoute isLoggedIn={isLoggedIn}>
-                    <SearchPage onAddTopic={onAddTopic}/>
+                    <SearchPage onAddTopic={onAddTopic} />
                   </ProtectedRoute>
                 }
               />
