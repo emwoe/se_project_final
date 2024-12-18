@@ -1,14 +1,17 @@
 import "./SavedSearchCard.css";
 
-function SavedSearchCard() {
+function SavedSearchCard({item})
+
+{
+
+  console.log(item);
+
   return (
     <div className="card__wrapper">
       <div className="card__colorblock"></div>
       <div className="card__text">
-        <h3 className="card__title">Card Title</h3>
-        <p className="card__summary">
-         Let's try this with some different text that is also too long for a single card. Trying to get the ellipsis to show up.
-        </p>
+        <h3 className="card__title">{item.topic}</h3>
+        <p className="card__summary">{item.topicResponse}</p>
       </div>
     </div>
   );

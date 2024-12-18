@@ -94,8 +94,6 @@ function App() {
     setCurrentTopic(card);
   };
 
-  //  Code below does not add 
-
   
   const getTopicResponse = async (userTopic) => {
     try {
@@ -192,6 +190,12 @@ function App() {
     if (currentUser._id) {
       console.log("Current user has been set:", currentUser);
     }
+  }, []);
+
+  useEffect(() => {
+    getTopics()
+      .then((data) => setTopicLibrary(data.data))
+      .catch(console.error);
   }, []);
 
 
