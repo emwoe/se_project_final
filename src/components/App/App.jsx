@@ -9,6 +9,7 @@ import StudyPage from "../StudyPage/StudyPage.jsx";
 import SavedSearchSection from "../SavedSearchSection/SavedSearchSection.jsx";
 import SearchPage from "../SearchPage/SearchPage.jsx";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
+import Preloader from "../Preloader/Preloader.jsx"
 import "./App.css";
 import {
   getTopics,
@@ -54,8 +55,7 @@ function App() {
           _id: data._id,
           email: data.email,
         });
-        console.log("you just registered the currentUser:")
-        console.log(currentUser);
+        setCurrentTopic({});
       });
     };
     handleSubmit(makeRequest);
@@ -68,6 +68,7 @@ function App() {
         if (data.usertoken) {
           token.setToken(data.usertoken);
           setCurrentUser(data.userdata);
+          setCurrentTopic({});
           setIsLoggedIn(true);
         }
       });
@@ -258,6 +259,7 @@ function App() {
             handleRegClick={handleRegClick}
             isLoading={isLoading}
           />
+          <Preloader isLoading={isLoading}></Preloader>
         </div>
       </CurrentUserContext.Provider>
     </IsLoggedInContext.Provider>

@@ -1,12 +1,14 @@
 import React from "react";
 import ButtonLink from "../ButtonLink/ButtonLink";
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
-
 import "./SearchForm.css";
+import { CurrentUserContext } from "../../contexts/CurrentUser.js";
 
-function SearchForm({ onAddTopic, currentUser }) {
+function SearchForm({ onAddTopic }) {
   const { values, resetForm, errors, isValid, handleChange } =
     useFormAndValidation();
+  
+    const currentUser = React.useContext(CurrentUserContext);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();

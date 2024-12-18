@@ -3,9 +3,6 @@ import "./SavedSearchCard.css";
 function SavedSearchCard({item})
 
 {
-
-  console.log(item);
-
   return (
     <div className="card__wrapper">
       <div className="card__colorblock"></div>
