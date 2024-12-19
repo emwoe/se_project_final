@@ -26,6 +26,7 @@ export const postTopic = (data, token) => {
       topic: data.topic,
       topicResponse: data.topicResponse,
       studyTips: data.studyTips,
+      color: data.color,
     }),
     headers: {
       "Content-type": "application/json",

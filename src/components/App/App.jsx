@@ -29,6 +29,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [currentTopic, setCurrentTopic] = useState({});
   const [topicLibrary, setTopicLibrary] = useState([]);
+  const [isTopicReady, setIsTopicReady] = useState(false);
+
 
   const handleModalClose = () => {
     setActiveModal("");
@@ -120,12 +122,25 @@ function App() {
     const jwt = token.getToken();
   
     const makeRequest = async () => {
+      let colorNum = Math.floor(Math.random() * 5);
       try {
       const topicData = await getTopicResponse(values.userTopic);
-      console.log("current topic is");
+      if (colorNum == 0) {
+        topicData.color = "blue";
+      } else if (colorNum == 1){
+        topicData.color = "green"
+      } else if (colorNum == 2){
+        topicData.color = "yellow"
+      } else if (colorNum == 3){
+        topicData.color = "red"
+      } else {
+        topicData.color = "orange"
+      }
       console.log(topicData);
       const data = await postTopic(topicData, jwt);
-      console.log("topic posted is");
+      if (data.data) {
+        setIsTopicReady(true);
+      }
       console.log(data.data);
       setCurrentTopic(data.data);
       setTopicLibrary((currentItems) => [data.data, ...currentItems]);
@@ -241,7 +256,7 @@ function App() {
                 path="/search-page"
                 element={
                   <ProtectedRoute isLoggedIn={isLoggedIn}>
-                    <SearchPage onAddTopic={onAddTopic} />
+                    <SearchPage onAddTopic={onAddTopic} isLoading={isLoading} isTopicReady={isTopicReady} setIsTopicReady={setIsTopicReady} />
                   </ProtectedRoute>
                 }
               />

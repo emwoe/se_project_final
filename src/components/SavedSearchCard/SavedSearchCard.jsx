@@ -6,7 +6,7 @@ function SavedSearchCard({item, handleTopicCardClick, handleDeleteClick})
 {
   return (
     <div className="card__wrapper" onClick={()=>{handleTopicCardClick(item)}}>
-      <div className="card__colorblock">
+      <div className={`card__colorblock card__colorblock-${item.color}`}>
       <button className="card__delete-btn"><img className="card__delete-img" alt="small trashcan" src={trashcan} onClick={()=>{handleDeleteClick(item)}}></img></button>      
       </div>
       <p className="card__title">{item.topic}</p>

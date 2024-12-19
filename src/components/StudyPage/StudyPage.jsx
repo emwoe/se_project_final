@@ -1,8 +1,11 @@
 import React from "react";
 
+
 import "./StudyPage.css";
 
 function StudyPage({ currentTopic }) {
+
+
   return (
     <main className="studypage">
       <div className="studypage__info">

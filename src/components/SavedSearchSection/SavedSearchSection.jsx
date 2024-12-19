@@ -15,6 +15,9 @@ function SavedSearchSection({ topicLibrary, handleTopicCardClick, handleDeleteCl
 
   return (
     <main className="search-section">
+      <h2 className="search-section__title">Your Searches</h2>
+      <p className="search-section__text">Clicking on a card in your library will reset the Study Page for this topic.</p>
+      <div className="search-section__card-wrapper">
       <ul className="search-section__cards">
         {ownTopics.map((item) => {
           return (
@@ -27,6 +30,7 @@ function SavedSearchSection({ topicLibrary, handleTopicCardClick, handleDeleteCl
           );
         })}
       </ul>
+      </div>
     </main>
   );
 }

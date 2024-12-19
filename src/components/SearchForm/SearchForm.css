@@ -32,6 +32,14 @@
   margin-bottom: 20px;
 }
 
+.search-form__btn_inactive {
+  color: lightgrey;
+}
+
 .search-form__btnlink {
   margin-bottom: 40px;
+}
+
+.search-form__btn-container_invbl {
+  display: none;
 }

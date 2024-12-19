@@ -1,4 +1,12 @@
-.search-section {
+.search-section__title {
+  text-align: left;
+}
+
+.search-section__text {
+  text-align: left;
+}
+
+.search-section__card-wrapper {
   display: flex;
   flex-direction: row;
   width: 100%;

@@ -1,24 +1,31 @@
 import React from "react";
+import { useEffect } from "react";
 import ButtonLink from "../ButtonLink/ButtonLink";
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 import "./SearchForm.css";
 import { CurrentUserContext } from "../../contexts/CurrentUser.js";
 
-function SearchForm({ onAddTopic }) {
+
+function SearchForm({ onAddTopic, isLoading, isTopicReady, setIsTopicReady }) {
   const { values, resetForm, errors, isValid, handleChange } =
     useFormAndValidation();
-  
-    const currentUser = React.useContext(CurrentUserContext);
+  const currentUser = React.useContext(CurrentUserContext);
+
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     if (!isValid) {
       return;
     }
-    console.log("Values read");
-    console.log(currentUser);
     onAddTopic({ values }, resetForm);
   };
+  
+
+  useEffect(() => {
+    setIsTopicReady(false);
+  }, []);
+
+
 
   return (
     <form className="search-form" onSubmit={handleSubmit}>
@@ -36,7 +43,7 @@ function SearchForm({ onAddTopic }) {
         placeholder=""
         name="userTopic"
         value={values.userTopic || ""}
-        minLength="4"
+        minLength="2"
         maxLength="100"
         onChange={handleChange}
       ></input>
@@ -45,14 +52,16 @@ function SearchForm({ onAddTopic }) {
         type="submit"
         className={`search-form__submit-btn ${
           !isValid ? "search-form__btn_inactive" : ""
-        }`}
+        } $`}
         disabled={!isValid}
       >
         Figure out what I need to know...
       </button>
+      <div className={`search-form__btn-container ${(!isTopicReady || isLoading == true) ? "search-form__btn-container_invbl" : ""}`}>
       <ButtonLink className="search-form__btnlink" to="/study-page">
         and let's go!
       </ButtonLink>
+      </div>
     </form>
   );
 }
