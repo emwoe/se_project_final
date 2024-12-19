@@ -27,8 +27,12 @@ export async function fetchTopicDataFromBackend(userTopic) {
     }
 
     const data = await response.json();
-    console.log(data.topicResponse);
-    return {topic: userTopic, topicResponse: data.topicResponse};
+    console.log(data);
+    return {
+      topic: userTopic,
+      topicResponse: data.topicInformation,
+      studyTips: data.studyTips,
+    };
   } catch (error) {
     console.error("Error fetching data on topic:", error);
   }
