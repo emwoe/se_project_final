@@ -26,8 +26,6 @@ export const login = ({ email, password }) => {
   }).then(checkResponse);
 };
 
-//  Will the function below pull all search data?
-
 export const getUserInfo = (token) => {
   return fetch(`${baseUrl}/users/me`, {
     method: "GET",

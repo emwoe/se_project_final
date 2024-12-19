@@ -1,28 +1,44 @@
 .card__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   border-radius: 19px;
   border-style: solid;
   border-color: rgba (0, 0, 0, 0.3);
   border-width: 1px;
-  max-width: 323px;
-  max-height: 326px;
-  min-width: 164px;
-  min-height: 164px;
-  aspect-ratio: 1/1;
-  position: relative;
+  width: 100%;
+  height: 200px;
   overflow: hidden;
-  padding-bottom: 25px;
+  position: relative;
 }
 
 .card__colorblock {
+  height: 60%;
   width: 100%;
-  height: 50%;
-  background-color: navy;
+  background-color: darkblue;
+  position: relative;
 }
 
 .card__title {
-  margin-top: 15px;
+  width: 80%;
+  font-size: 18px;
+  line-height: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 
-.card__summary {
-  padding: 15px;
+.card__delete-btn {
+  padding: 0;
+  height: fit-content;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.card__delete-img {
+  height: 25px;
+  width: 25px;
 }

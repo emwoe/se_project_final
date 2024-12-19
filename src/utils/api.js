@@ -8,8 +8,14 @@ export function checkResponse(res) {
   }
 }
 
-export const getTopics = () => {
-  return fetch(`${baseUrl}/topics`).then(checkResponse);
+export const getTopics = (token) => {
+  return fetch(`${baseUrl}/topics`, {
+    method: "GET",
+    headers: {
+      "Content-type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
 };
 
 export const postTopic = (data, token) => {
@@ -22,6 +28,16 @@ export const postTopic = (data, token) => {
     }),
     headers: {
       "Content-type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+};
+
+export const deleteTopic = (id, token) => {
+  return fetch(`${baseUrl}/topics/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
   }).then(checkResponse);

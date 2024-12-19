@@ -4,35 +4,29 @@ import { CurrentUserContext } from "../../contexts/CurrentUser";
 import "./SavedSearchSection.css";
 
 
-function SavedSearchSection({ topicLibrary, handleTopicCardClick }) {
+function SavedSearchSection({ topicLibrary, handleTopicCardClick, handleDeleteClick }) {
 
   const currentUser = React.useContext(CurrentUserContext);
 
   const ownTopics = topicLibrary.filter(
     (item) => item.owner === currentUser._id
   );
-
-  
-  ownTopics.map((item)=>{console.log(item)});
-  
-
-  console.log(topicLibrary);
-  console.log(ownTopics);
   
 
   return (
     <main className="search-section">
-      <div className="search-section__cards">
-        <ul className="search-section__list">
+      <ul className="search-section__cards">
         {ownTopics.map((item) => {
           return (
             <SavedSearchCard
               item={item}
+              key={item._id}
+              handleTopicCardClick={handleTopicCardClick}
+              handleDeleteClick={handleDeleteClick}
             />
           );
         })}
       </ul>
-      </div>
     </main>
   );
 }

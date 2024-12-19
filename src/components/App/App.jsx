@@ -14,6 +14,7 @@ import "./App.css";
 import {
   getTopics,
   postTopic,
+  deleteTopic
 } from "../../utils/api.js";
 import * as auth from "../../utils/auth.js";
 import * as token from "../../utils/token.js";
@@ -29,11 +30,10 @@ function App() {
   const [currentTopic, setCurrentTopic] = useState({});
   const [topicLibrary, setTopicLibrary] = useState([]);
 
-  let libraryArray = [];
   const handleModalClose = () => {
     setActiveModal("");
   };
-
+  
   function handleSubmit(request) {
     setIsLoading(true);
     request()
@@ -42,7 +42,8 @@ function App() {
       .finally(() => setIsLoading(false));
   }
 
-  //  The functions below need to be changed for the correct fields
+
+//  login, log out and registration
 
   const handleRegistration = ({ username, email, password }) => {
     console.log({username});
@@ -91,11 +92,10 @@ function App() {
     setCurrentUser({});
   };
 
-  const handleTopicCardClick = (card) => {
-    setCurrentTopic(card);
-  };
 
-  
+
+//  search and add-topic functionality //
+
   const getTopicResponse = async (userTopic) => {
     try {
     console.log("getting response for user:");
@@ -113,6 +113,8 @@ function App() {
       throw error;
     }
   };
+
+
 
   const onAddTopic = async ({values}, resetForm, currentUser) => {
     const jwt = token.getToken();
@@ -139,6 +141,29 @@ function App() {
     handleSubmit(makeRequest);
   };
 
+//  topic card functionality //
+
+
+  const handleTopicCardClick = (item) => {
+    console.log(item)
+    setCurrentTopic(item);
+  };
+
+  const handleDeleteClick = (item) => {
+    const jwt = token.getToken();
+    deleteTopic(item._id, jwt)
+      .then(() => {
+        setTopicLibrary((topics) =>
+          topics.filter((topic) => topic._id != item._id)
+        );
+      })
+      .then(handleModalClose)
+      .catch(console.error);
+  };
+
+
+//  useEffects //
+
 
   useEffect(() => {
     function handleEscClose(evt) {
@@ -164,10 +189,7 @@ function App() {
   }, [activeModal]);
 
   useEffect(() => {
-    console.log("running use effect");
     const jwt = token.getToken();
-    console.log("jwt is");
-    console.log(jwt);
 
     if (!jwt) {
       return;
@@ -194,7 +216,9 @@ function App() {
   }, []);
 
   useEffect(() => {
-    getTopics()
+    const jwt = token.getToken();
+
+    getTopics(jwt)
       .then((data) => setTopicLibrary(data.data))
       .catch(console.error);
   }, []);
@@ -236,6 +260,7 @@ function App() {
                     <SavedSearchSection
                       handleTopicCardClick={handleTopicCardClick}
                       topicLibrary={topicLibrary}
+                      handleDeleteClick={handleDeleteClick}
                     />
                   </ProtectedRoute>
                 }
