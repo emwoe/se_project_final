@@ -1,13 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import closebtn from "../../assets/closebtn.png";
-import hamburger from "../../assets/hamburgermenu.png";
 import "./Header.css";
+import hamburgermenu from "../../assets/hamburgermenu.png";
 import Navigation from "../Navigation/Navigation";
 import { CurrentUserContext } from "../../contexts/CurrentUser";
 import { IsLoggedInContext } from "../../contexts/IsLoggedIn";
 
-function Header({ handleRegClick, handleLoginClick, handleLogout }) {
+function Header({ handleRegClick, handleLoginClick, handleLogout, handleHamburgerClick }) {
   const currentUser = React.useContext(CurrentUserContext);
   const isLoggedIn = React.useContext(IsLoggedInContext);
 
@@ -19,6 +17,9 @@ function Header({ handleRegClick, handleLoginClick, handleLogout }) {
         handleLoginClick={handleLoginClick}
         handleLogout={handleLogout}
       />
+      <button onClick={handleHamburgerClick} className="header__mobile-menu">
+        <img className="header__menu-img" src={hamburgermenu}/>
+      </button>
     </header>
   );
 }

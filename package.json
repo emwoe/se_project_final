@@ -27,5 +27,11 @@
   },
   "react-dotenv": {
     "whitelist": ["http://localhost:3001/api/query"]
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 4,
+    "semi": false,
+    "singleQuote": true
   }
 }
