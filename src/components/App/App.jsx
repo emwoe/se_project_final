@@ -46,18 +46,23 @@ function App() {
         console.log({ username })
         const makeRequest = () => {
             return auth.register({ username, email, password }).then((data) => {
-                setIsLoggedIn(true)
-                console.log(data)
+                if (data.usertoken) {
+                    setIsLoggedIn(true)
+                    console.log(data)
+                    /*
                 setCurrentUser({
                     username: data.username,
                     _id: data._id,
                     email: data.email,
                 })
-                setCurrentTopic({})
+                    */
+                    token.setToken(data.usertoken)
+                    setCurrentUser(data.userdata)
+                    setCurrentTopic({})
+                }
             })
         }
         handleSubmit(makeRequest)
-        auth.getUserInfo(jwt)
     }
 
     const handleLogin = ({ email, password }) => {
@@ -224,10 +229,11 @@ function App() {
 
     useEffect(() => {
         const jwt = token.getToken()
-
-        getTopics(jwt)
-            .then((data) => setTopicLibrary(data.data))
-            .catch(console.error)
+        if (jwt) {
+            getTopics(jwt)
+                .then((data) => setTopicLibrary(data.data))
+                .catch(console.error)
+        }
     }, [])
 
     return (
