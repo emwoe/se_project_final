@@ -11,7 +11,6 @@ function Header({
     handleLogout,
     handleHamburgerClick,
 }) {
-    const currentUser = React.useContext(CurrentUserContext)
     const isLoggedIn = React.useContext(IsLoggedInContext)
 
     return (

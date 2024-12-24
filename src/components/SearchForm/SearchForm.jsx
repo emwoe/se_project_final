@@ -6,9 +6,7 @@ import './SearchForm.css'
 import { CurrentUserContext } from '../../contexts/CurrentUser.js'
 
 function SearchForm({ onAddTopic, isLoading, isTopicReady, setIsTopicReady }) {
-    const { values, resetForm, errors, isValid, handleChange } =
-        useFormAndValidation()
-    const currentUser = React.useContext(CurrentUserContext)
+    const { values, resetForm, isValid, handleChange } = useFormAndValidation()
 
     const handleSubmit = (evt) => {
         evt.preventDefault()

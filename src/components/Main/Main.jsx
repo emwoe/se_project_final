@@ -1,14 +1,13 @@
-import React from "react";
-import imageblock from "../../assets/studyhelperbackgroundimg.jpg";
+import imageblock from '../../assets/studyhelperbackgroundimg.jpg'
 
-import "./Main.css";
+import './Main.css'
 
-function Main({}) {
-  return (
-    <main>
-      <img className="main__img-block" src={imageblock}></img>
-    </main>
-  );
+function Main() {
+    return (
+        <main>
+            <img className="main__img-block" src={imageblock}></img>
+        </main>
+    )
 }
 
-export default Main;
+export default Main

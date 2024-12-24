@@ -113,7 +113,7 @@ function App() {
         }
     }
 
-    const onAddTopic = async ({ values }, resetForm, currentUser) => {
+    const onAddTopic = async ({ values }, resetForm) => {
         const jwt = token.getToken()
 
         const makeRequest = async () => {

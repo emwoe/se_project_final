@@ -11,8 +11,6 @@ function RegisterModal({
     const { values, isValid, errors, handleChange, resetForm } =
         useFormAndValidation()
 
-    const checkPasswords = () => {}
-
     const handleSubmit = (evt) => {
         console.log('Submitting!')
         evt.preventDefault()
