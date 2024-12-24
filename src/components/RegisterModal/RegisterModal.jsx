@@ -11,18 +11,19 @@ function RegisterModal({
     const { values, isValid, errors, handleChange, resetForm } =
         useFormAndValidation()
 
+    const checkPasswords = () => {}
+
     const handleSubmit = (evt) => {
         console.log('Submitting!')
         evt.preventDefault()
         if (!isValid) {
             return
+        } else if (values.password != values.passwordcheck) {
+            alert('Passwords do not match. Please try again.')
+            return
         }
         handleRegistration({
             username: values.username,
-            email: values.email,
-            password: values.password,
-        })
-        handleLogin({
             email: values.email,
             password: values.password,
         })

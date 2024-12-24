@@ -49,13 +49,6 @@ function App() {
                 if (data.usertoken) {
                     setIsLoggedIn(true)
                     console.log(data)
-                    /*
-                setCurrentUser({
-                    username: data.username,
-                    _id: data._id,
-                    email: data.email,
-                })
-                    */
                     token.setToken(data.usertoken)
                     setCurrentUser(data.userdata)
                     setCurrentTopic({})
@@ -92,6 +85,7 @@ function App() {
         setIsLoggedIn(false)
         token.clearToken()
         setCurrentUser({})
+        setActiveModal('')
     }
 
     //  Mobile menu //
@@ -312,6 +306,7 @@ function App() {
                         activeModal={activeModal}
                         handleModalClose={handleModalClose}
                         isOpen={activeModal === 'mobile-menu'}
+                        handleLogout={handleLogout}
                     />
                     <Preloader isLoading={isLoading}></Preloader>
                 </div>

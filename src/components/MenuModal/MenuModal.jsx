@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import './MenuModal.css'
 import closeBtn from '../../assets/closebtn.png'
 
-function MenuModal({ isOpen, handleModalClose }) {
+function MenuModal({ isOpen, handleModalClose, handleLogout }) {
     return (
         <div className={`menu-modal ${isOpen === true && 'menu-modal_opened'}`}>
             <div className="menu-modal__overlay">
@@ -36,6 +36,9 @@ function MenuModal({ isOpen, handleModalClose }) {
                     >
                         Past Searches
                     </Link>
+                    <button className="menu-modal__link" onClick={handleLogout}>
+                        Logout
+                    </button>
                     <button
                         className="menu-modal__close-btn"
                         onClick={handleModalClose}

@@ -1,63 +1,64 @@
 .header {
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 40px;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 40px;
 }
 
 .header__logo {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 60px;
-  margin: auto 0;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 60px;
+    margin: auto 0;
 }
 
 .header__mobile-menu {
-  display: none;
-  padding: 0;
+    display: none;
+    padding: 0;
 }
 
 @media all and (max-width: 1145px) {
-  .header__logo {
-    font-size: 50px;
-  }
+    .header__logo {
+        font-size: 50px;
+    }
 }
 
 @media all and (max-width: 1000px) {
-  .header__logo {
-    font-size: 44px;
-  }
+    .header__logo {
+        font-size: 44px;
+    }
 }
 
 @media all and (max-width: 900px) {
-  .header {
-    flex-direction: column;
-  }
+    .header {
+        flex-direction: column;
+    }
 
-  .header__logo {
-    align-self: flex-start;
-  }
+    .header__logo {
+        align-self: flex-start;
+    }
 }
 
 @media all and (max-width: 620px) {
-  .header {
-    flex-direction: row;
-  }
-  .header__mobile-menu {
-    display: inline;
-  }
+    .header {
+        flex-direction: row;
+    }
 
-  .header__logo {
-    font-size: 38px;
-  }
+    .header__mobile-menu-loggedin {
+        display: inline;
+    }
+
+    .header__logo {
+        font-size: 38px;
+    }
 }
 
 @media all and (max-width: 440px) {
-  .header {
-    justify-content: space-between;
-  }
-  .header__logo {
-    font-size: 32px;
-    text-align: left;
-  }
+    .header {
+        justify-content: space-between;
+    }
+    .header__logo {
+        font-size: 32px;
+        text-align: left;
+    }
 }
