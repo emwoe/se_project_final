@@ -1,78 +1,82 @@
 .card__wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 19px;
-  border-style: solid;
-  border-color: gray;
-  border-width: 1px;
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-  position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 19px;
+    border-style: solid;
+    border-color: gray;
+    border-width: 1px;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    text-decoration: none;
+    color: black;
 }
 
 .card__wrapper:hover {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 19px;
-  border-style: solid;
-  border-color: black;
-  border-width: 1px;
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-  position: relative;
-  cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 19px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    color: gray;
 }
 
 .card__colorblock {
-  height: 60%;
-  width: 100%;
-  position: relative;
+    height: 60%;
+    width: 100%;
+    position: relative;
 }
 
 .card__colorblock-blue {
-  background-color: #30485c;
+    background-color: #30485c;
 }
 
 .card__colorblock-green {
-  background-color: #659577;
+    background-color: #659577;
 }
 
 .card__colorblock-yellow {
-  background-color: #e6c562;
+    background-color: #e6c562;
 }
 
 .card__colorblock-orange {
-  background-color: #e38d56;
+    background-color: #e38d56;
 }
 
 .card__colorblock-red {
-  background-color: #d35143;
+    background-color: #d35143;
 }
 
 .card__title {
-  width: 80%;
-  font-size: 18px;
-  line-height: 18px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin: 0;
-  padding-top: 12px;
-  padding-bottom: 12px;
+    width: 80%;
+    font-size: 18px;
+    line-height: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-decoration: none;
 }
 
 .card__delete-btn {
-  padding: 0;
-  height: fit-content;
-  position: absolute;
-  right: 10px;
-  top: 10px;
+    padding: 0;
+    height: fit-content;
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }
 
 .card__delete-img {
-  height: 25px;
-  width: 25px;
+    height: 25px;
+    width: 25px;
 }

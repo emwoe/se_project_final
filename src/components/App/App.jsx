@@ -153,7 +153,6 @@ function App() {
     //  topic card functionality //
 
     const handleTopicCardClick = (item) => {
-        console.log(item)
         setCurrentTopic(item)
     }
 
