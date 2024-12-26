@@ -196,23 +196,26 @@ function App() {
     }, [activeModal])
 
     useEffect(() => {
-        const jwt = token.getToken()
+        if (currentUser._id) {
+            const jwt = token.getToken()
 
-        if (!jwt) {
-            return
-        }
+            if (!jwt) {
+                return
+            }
 
-        auth.getUserInfo(jwt)
-            .then(({ data }) => {
-                console.log(data)
-                setIsLoggedIn(true)
-                setCurrentUser({
-                    username: data.username,
-                    _id: data._id,
-                    email: data.email,
+            auth.getUserInfo(jwt)
+                .then(({ data }) => {
+                    console.log(data)
+                    setIsLoggedIn(true)
+                    setCurrentUser({
+                        username: data.username,
+                        _id: data._id,
+                        email: data.email,
+                    })
                 })
-            })
-            .catch(console.error)
+                .catch(console.error)
+        }
+        return
     }, [])
 
     useEffect(() => {
