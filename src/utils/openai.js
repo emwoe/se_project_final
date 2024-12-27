@@ -1,7 +1,8 @@
-//  This is how openAI calls were set up in previous project
-// Everthing will have to be checked when backend is setup
+const urlstring =
+    process.env.NODE_ENV === 'production'
+        ? 'https://api.studyhelper.crabdance.com'
+        : 'http://localhost:3001'
 
-const urlstring = 'http://localhost:3001/api/query'
 const baseUrl = new URL(urlstring)
 
 export function checkResponse(res) {
