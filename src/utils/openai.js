@@ -1,9 +1,9 @@
 const urlstring =
     process.env.NODE_ENV === 'production'
-        ? 'https://api.studyhelper.crabdance.com'
+        ? 'https://api.studyhelper.crabdance.com/api/query'
         : 'http://localhost:3001'
 
-const baseUrl = new URL(urlstring)
+const openAIbaseURL = new URL(urlstring)
 
 export function checkResponse(res) {
     if (res.ok) {
@@ -15,7 +15,7 @@ export function checkResponse(res) {
 
 export async function fetchTopicDataFromBackend(userTopic) {
     try {
-        const response = await fetch(baseUrl, {
+        const response = await fetch(openAIbaseURL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

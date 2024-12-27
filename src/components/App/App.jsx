@@ -195,6 +195,37 @@ function App() {
     }, [activeModal])
 
     useEffect(() => {
+        console.log('use Effect running')
+        const jwt = token.getToken()
+        console.log(jwt)
+
+        if (jwt) {
+            auth.getUserInfo(jwt)
+                .then(({ data }) => {
+                    console.log('User data:', data)
+                    setIsLoggedIn(true)
+                    setCurrentUser({
+                        username: data.username,
+                        _id: data._id,
+                        email: data.email,
+                    })
+                })
+                .catch((error) => {
+                    console.error('Error fetching user info', error)
+                    setIsLoggedIn(false)
+                })
+
+            getTopics(jwt)
+                .then((data) => setTopicLibrary(data.data))
+                .catch(console.error)
+        }
+    }, [])
+
+    /*
+
+    useEffect(() => {
+        console.log('current User is')
+        console.log(currentUser)
         if (currentUser._id) {
             const jwt = token.getToken()
 
@@ -216,12 +247,14 @@ function App() {
         }
         return
     }, [])
+    
 
     useEffect(() => {
         if (currentUser._id) {
             console.log('Current user has been set:', currentUser)
         }
     }, [])
+
 
     useEffect(() => {
         const jwt = token.getToken()
@@ -231,6 +264,7 @@ function App() {
                 .catch(console.error)
         }
     }, [])
+    */
 
     return (
         <IsLoggedInContext.Provider value={isLoggedIn}>
