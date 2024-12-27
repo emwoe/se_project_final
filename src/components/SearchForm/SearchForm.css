@@ -1,45 +1,91 @@
 .search-form {
-  max-width: 80%;
-  border: solid gainsboro 1px;
-  border-radius: 30px;
-  padding: 20px;
+    max-width: 80%;
+    border: solid gainsboro 1px;
+    border-radius: 30px;
+    padding: 20px;
 }
 
 .search-form__title {
-  margin: 0;
-  margin-top: 20px;
-  margin-bottom: 40px;
-  font-size: 32px;
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    font-size: 32px;
+    line-height: 32px;
 }
 
 .search-form__instructions {
-  font-size: 22px;
-  margin-bottom: 40px;
+    font-size: 22px;
+    margin-bottom: 40px;
 }
 
 .search-form__input {
-  margin-bottom: 40px;
-  border: 0.5px solid navy;
-  border-radius: 30px;
-  height: 30px;
-  padding: 5px;
+    margin-bottom: 40px;
+    border: 0.5px solid navy;
+    border-radius: 30px;
+    height: 30px;
+    padding: 5px;
 }
 
 .search-form__submit-btn {
-  color: navy;
-  text-decoration: underline;
-  font-size: 22px;
-  margin-bottom: 20px;
+    color: navy;
+    text-decoration: underline;
+    font-size: 22px;
+    margin-bottom: 20px;
 }
 
 .search-form__btn_inactive {
-  color: lightgrey;
+    color: lightgrey;
 }
 
 .search-form__btnlink {
-  margin-bottom: 40px;
+    margin-bottom: 40px;
 }
 
 .search-form__btn-container_invbl {
-  display: none;
+    display: none;
+}
+
+@media all and (max-width: 1000px) {
+    .search-form__title {
+        margin-top: 16px;
+        margin-bottom: 32px;
+        font-size: 28px;
+        line-height: 28px;
+    }
+
+    .search-form__instructions {
+        font-size: 18px;
+        line-height: 18px;
+        margin-bottom: 32px;
+    }
+
+    .search-form__submit-btn {
+        font-size: 18px;
+        line-height: 18px;
+        margin-bottom: 16px;
+    }
+}
+
+@media all and (max-width: 620px) {
+    .search-form__title {
+        margin-top: 14px;
+        margin-bottom: 28px;
+        font-size: 24px;
+        line-height: 24px;
+    }
+
+    .search-form__instructions {
+        font-size: 14px;
+        line-height: 14px;
+        margin-bottom: 28px;
+    }
+
+    .search-form__submit-btn {
+        font-size: 14px;
+        line-height: 14px;
+        margin-bottom: 16px;
+    }
+}
+
+@media all and (max-width: 440px) {
 }

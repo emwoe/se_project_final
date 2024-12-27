@@ -1,39 +1,40 @@
-//  This is how openAI calls were set up in previous project
-// Everthing will have to be checked when backend is setup
+const urlstring =
+    process.env.NODE_ENV === 'production'
+        ? 'https://api.studyhelper.crabdance.com/api/query'
+        : 'http://localhost:3001'
 
-const urlstring = "http://localhost:3001/api/query";
-const baseUrl = new URL(urlstring);
+const openAIbaseURL = new URL(urlstring)
 
 export function checkResponse(res) {
-  if (res.ok) {
-    return res.json();
-  } else {
-    return Promise.reject(`Error: ${res.status}`);
-  }
+    if (res.ok) {
+        return res.json()
+    } else {
+        return Promise.reject(`Error: ${res.status}`)
+    }
 }
 
 export async function fetchTopicDataFromBackend(userTopic) {
-  try {
-    const response = await fetch("http://localhost:3001/api/query", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ topic: userTopic }),
-    });
+    try {
+        const response = await fetch(openAIbaseURL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ topic: userTopic }),
+        })
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`)
+        }
+
+        const data = await response.json()
+        console.log(data)
+        return {
+            topic: userTopic,
+            topicResponse: data.topicInformation,
+            studyTips: data.studyTips,
+        }
+    } catch (error) {
+        console.error('Error fetching data on topic:', error)
     }
-
-    const data = await response.json();
-    console.log(data);
-    return {
-      topic: userTopic,
-      topicResponse: data.topicInformation,
-      studyTips: data.studyTips,
-    };
-  } catch (error) {
-    console.error("Error fetching data on topic:", error);
-  }
 }

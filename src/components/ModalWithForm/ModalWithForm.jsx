@@ -1,8 +1,6 @@
 import "./ModalWithForm.css";
 import closeBtn from "../../assets/closebtn.png";
 
-import { useFormAndValidation } from "../../hooks/useFormAndValidation";
-
 function ModalWithForm({
   title,
   name,

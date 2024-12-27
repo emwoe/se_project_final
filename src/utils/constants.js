@@ -1,9 +1,4 @@
-export const baseUrl = "http://localhost:3001";
-
-export const colorArray = [
-  "#e6c562",
-  "#659577",
-  "#30485c",
-  "#d35143",
-  "#e38d56",
-];
+export const baseUrl =
+    process.env.NODE_ENV === 'production'
+        ? 'https://api.studyhelper.crabdance.com'
+        : 'http://localhost:3001'
